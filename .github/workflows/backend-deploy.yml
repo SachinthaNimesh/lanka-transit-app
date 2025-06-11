@@ -1,0 +1,36 @@
+name: Build ASP.NET Backend
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'backend/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '9.0.6'
+
+      - name: Restore dependencies
+        run: dotnet restore ./backend
+
+      - name: Build project
+        run: dotnet build ./backend --configuration Release --no-restore
+
+      - name: Publish project
+        run: dotnet publish ./backend --configuration Release --output ./backend/publish
+        
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: backend-build
+          path: ./backend/publish
