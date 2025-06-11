@@ -30,7 +30,7 @@ jobs:
         run: dotnet publish ./backend --configuration Release --output ./backend/publish
         
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: backend-build
           path: ./backend/publish
