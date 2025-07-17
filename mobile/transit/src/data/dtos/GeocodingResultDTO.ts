@@ -1,0 +1,1 @@
+// DTO for geocoding results
