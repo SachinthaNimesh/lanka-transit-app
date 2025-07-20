@@ -36,6 +36,6 @@ yarn-error.*
 # typescript
 *.tsbuildinfo
 
-# personal utils and idea confic
+# personal utils and idea config
 .util/
 .idea/

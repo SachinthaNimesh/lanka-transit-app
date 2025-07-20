@@ -244,7 +244,12 @@ export class AlarmDAO {
             'INSERT INTO notifying_distances (alarm_id, distance, unit) VALUES (?, ?, ?);',
             [alarmId, distance, unit]
         );
-        return result.insertId!;
+
+        if (result.insertId == null) {
+            throw new Error('Failed to insert notifying distance');
+        }
+
+        return result.insertId;
     }
 
     // Get notifying distance
